@@ -1,0 +1,29 @@
+.movie {
+  @include flex();
+
+    img{
+      width: 220px;
+      height: 330px;
+      transition: all 0.3s;
+      margin-bottom: 1vh;
+    }
+
+      h1 {
+        font-size: xx-large;
+        color: $primary-color;
+      }
+
+      h2 {
+        color: $primary-color;
+        font-size: larger;
+      }
+      h3 {
+        margin: 1vh 0;
+      }
+
+    .movieInfo {
+      text-align:justify;
+      width: calc(100% - 220px - 2em);
+      padding: 0 1em;
+    }
+}

@@ -1,0 +1,230 @@
+@font-face {
+  font-family: "BebasNeue";
+  src: url(../font/Raleway-Bold.ttf);
+}
+.moviesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.moviesContainer input {
+  align-self: flex-end;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #6428cc;
+  border-radius: 15px;
+  margin-bottom: 1.5vh;
+  font-family: "BebasNeue", Helvetica, sans-serif;
+  font-size: 2vh;
+  padding: 0.6em;
+  transition: all 0.7s linear;
+}
+.moviesContainer input:hover,
+.moviesContainer input:focus {
+  outline: 2px solid #0ebeac;
+}
+.moviesContainer ::-moz-placeholder {
+  color: #fff;
+  opacity: 0.8;
+}
+.moviesContainer :-ms-input-placeholder {
+  color: #fff;
+  opacity: 0.8;
+}
+.moviesContainer ::placeholder {
+  color: #fff;
+  opacity: 0.8;
+}
+.moviesContainer .movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 1vh 5.5vh;
+}
+.moviesContainer .movies li {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.5em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+.moviesContainer .movies li img {
+  width: 220px;
+  height: 300px;
+  transition: all 0.3s;
+  opacity: 85%;
+  margin-bottom: 1vh;
+}
+.moviesContainer .movies li img:hover {
+  transform: scale(1.05);
+  opacity: 100%;
+}
+.moviesContainer .movies li p {
+  width: 220px;
+}
+.moviesContainer .movies li p:hover {
+  color: #0ebeac;
+}
+
+.movie {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie img {
+  width: 220px;
+  height: 330px;
+  transition: all 0.3s;
+  margin-bottom: 1vh;
+}
+.movie h1 {
+  font-size: xx-large;
+  color: #6428cc;
+}
+.movie h2 {
+  color: #6428cc;
+  font-size: larger;
+}
+.movie h3 {
+  margin: 1vh 0;
+}
+.movie .movieInfo {
+  text-align: justify;
+  width: calc(100% - 220px - 2em);
+  padding: 0 1em;
+}
+
+button {
+  background-color: transparent;
+  border: 2px solid #6428cc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin: 1vh;
+  transition: all 0.3s ease-in;
+  font-family: "BebasNeue", Helvetica, sans-serif;
+}
+
+button:hover {
+  border: 2px solid #0ebeac;
+  background-color: #0ebeac;
+  transform: scale(1.3);
+  color: #fff;
+}
+
+.scroll {
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: #6428cc;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1.5vh;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid #FFF;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.cinemas {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.cinemas .showDate,
+.cinemas .noCinemas {
+  margin: 2em 1em 0 0;
+}
+.cinemas .showDate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 2px solid #6428cc;
+}
+.cinemas .showDate .placeAndTime {
+  border: 1px solid #6428cc;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem 0.5rem;
+  padding: 1rem;
+  width: 100px;
+  transition: all 0.5s;
+}
+.cinemas .showDate .placeAndTime .place {
+  font-size: small;
+  margin-bottom: 0.5rem;
+}
+.cinemas .showDate .placeAndTime .time {
+  font-size: larger;
+}
+.cinemas .showDate .placeAndTime:hover {
+  border: 1px solid #0ebeac;
+}
+
+#cities {
+  background-color: transparent;
+  border: 1px solid #6428cc;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "BebasNeue", Helvetica, sans-serif;
+  padding: 0 1em;
+}
+#cities option {
+  background-color: #000;
+  color: #fff;
+}
+
+#cities:focus {
+  outline: none;
+  border: 1px solid #0ebeac;
+}
+
+body {
+  font-family: "BebasNeue", Helvetica, sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 1.5rem;
+}
+body a:hover {
+  color: #0ebeac;
+}/*# sourceMappingURL=index.css.map */

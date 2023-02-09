@@ -1,0 +1,41 @@
+.cinemas {
+  @include flex();
+  flex-wrap: nowrap;
+  flex-direction: column;
+
+  .showDate,
+  .noCinemas  {
+    margin: 2em 1em 0 0;
+  }
+
+  .showDate {
+    @include flex();
+    align-items: center;
+    border-bottom: 2px solid $primary-color;
+
+    .placeAndTime {
+      border: 1px solid $primary-color;
+      border-radius: 15px;
+      cursor: pointer;
+      @include flex-center();
+      flex-direction: column;
+      margin: 1rem 0.5rem;
+      padding: 1rem;
+      width: 100px;
+      transition: all 0.5s;
+
+      .place {
+        font-size: small;
+        margin-bottom: 0.5rem;
+      }
+
+      .time {
+        font-size: larger;
+      }
+    }
+
+    .placeAndTime:hover {
+      border: 1px solid $hover-color;
+    }
+  }
+}
