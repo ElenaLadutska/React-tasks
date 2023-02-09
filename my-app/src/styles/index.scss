@@ -1,0 +1,20 @@
+@import 'variables';
+@import 'mixins';
+@import 'movies';
+@import 'movie';
+@import 'buttons';
+@import 'header';
+@import 'loader';
+@import 'cinemas';
+@import 'cities';
+
+body {
+  font-family: $fonts; 
+  background-color: $background-color;
+  color: $text-color;
+  padding: $spacing;
+
+    a:hover {
+      color: $hover-color;
+    }
+}

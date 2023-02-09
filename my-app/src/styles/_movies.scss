@@ -1,0 +1,63 @@
+.moviesContainer {
+  @include flex-center();
+  flex-direction: column;
+
+    input {
+      align-self: flex-end;
+      background-color: $background-color;
+      color: $text-color;
+      border: 1px solid $primary-color;
+      border-radius: 15px;
+      margin-bottom: 1.5vh;
+      font-family: $fonts;
+      font-size: 2vh;
+      padding: 0.6em;
+      transition: all 0.7s linear;
+    }
+
+    input:hover,
+    input:focus{
+      outline: 2px solid $hover-color;
+    }
+
+    ::placeholder {
+      color: $text-color;
+      opacity: 0.8;
+    }
+
+    .movies {
+      @include flex();
+      justify-content: space-evenly;
+      margin: 1vh 5.5vh;
+
+      li {
+        @include flex();
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0.5em;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+
+        img{
+          width: 220px;
+          height: 300px;
+          transition: all 0.3s;
+          opacity: 85%;
+          margin-bottom: 1vh;
+        }
+
+        img:hover {
+          transform: scale(1.05);
+          opacity: 100%;
+        }
+
+        p {
+          width: 220px;
+        }
+        p:hover {
+          color: $hover-color;
+        }
+      }
+    }
+}
