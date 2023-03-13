@@ -3,17 +3,17 @@
   flex-wrap: nowrap;
   flex-direction: column;
 
-  .showDate,
-  .noCinemas  {
+  .show-date,
+  .no-cinemas  {
     margin: 2em 1em 0 0;
   }
 
-  .showDate {
+  .show-date {
     @include flex();
     align-items: center;
     border-bottom: 2px solid $primary-color;
 
-    .placeAndTime {
+    .place-and-time {
       border: 1px solid $primary-color;
       border-radius: 15px;
       cursor: pointer;
@@ -34,8 +34,13 @@
       }
     }
 
-    .placeAndTime:hover {
+    .place-and-time:hover {
       border: 1px solid $hover-color;
+    }
+
+    h2 {
+      color: $primary-color;
+      font-size: larger;
     }
   }
 }

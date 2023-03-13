@@ -1,14 +1,15 @@
 import { CITIES } from "../../constants";
 
-function Cities(props) {
+const Cities = (props) => {
+  const { city, setCity } = props;
   return (
     <>
       <select 
         name="cities"
         id="cities"
-        value={props.city}
+        value={city}
         onChange={event => {
-          props.setCity(event.target.value);
+          setCity(event.target.value);
         }}
       >
         {

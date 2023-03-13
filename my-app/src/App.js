@@ -10,7 +10,7 @@ import NotFound from './components/NotFound';
 const App = () => {
   const [city, setCity] = useState("1");
 
-  return(
+  return (
   <>
     <Routes>
       <Route path='/' element={<Layout city={city} setCity={setCity}/>}>

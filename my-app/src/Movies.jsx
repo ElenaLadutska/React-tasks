@@ -1,11 +1,14 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
+import getMoviesInfo from "./getMoviesInfo";
 import Button from "./components/Button";
 import Loader from "./components/Loader";
 import ScrollButton from "./components/ScrollButton";
 
-function Movies(props) {
-  let [isLoading, setLoading] = useState(true);
+const Movies = (props) => {
+  const { city } = props;
+
+  let [isLoading, setLoading] = useState(false);
 
   const [movies, setMovies] = useState([]);
 
@@ -13,38 +16,36 @@ function Movies(props) {
 
   let [isError, setError] = useState(false);
 
-  const getMovies = async() => {
-    try {
-      fetch(`https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:${props.city}%7D&extended=true`)
-        .then(response => response.json())
-        .then(data => setMovies(data));
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
-      setLoading(isLoading = false);
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const getMovies = useCallback(() => {
+    try {
+      getMoviesInfo(city, setMovies);
+      setLoading(false);
     } 
     catch (error) {
-      setError(isError = true);
+      setError(true);
       throw new Error("Something wrong with server")
     }
-  };
+  }, [city]);
+
+  const filterMovies = useCallback(
+    () => 
+    setFilteredMovies(movies?.filter(
+      movie => movie.name.toLowerCase().includes(value.toLowerCase()))),
+    [movies, value],
+  );
 
   useEffect(() => {
     getMovies();
-  }, []);
-
-  const [filteredMovies, setFilteredMovies] = useState([]);
-
-  const filterMovies = useCallback(
-    () => {
-      setFilteredMovies(movies.filter(movie => movie.name.toLowerCase().includes(value.toLowerCase())))
-    },
-    [movies, value],
-  );
+  }, [getMovies]);
 
   useEffect(() => {
     filterMovies()
   }, [filterMovies]);
 
-  const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +61,7 @@ function Movies(props) {
 
   return (
     isLoading ? <Loader /> : (
-      <div className="moviesContainer">
+      <div className="movies-container">
         <input 
           type="text" 
           onChange={event => setValue(event.target.value)}
@@ -70,30 +71,31 @@ function Movies(props) {
 
         <ul className="movies">
           {!!movies?.length &&
-            filteredMovies.map((movie, index) => (
-              <li key={index}>
-                <img 
-                  alt="movieImg"
-                  src={movie.posterLink}>
-                </img>
+            filteredMovies.map((
+              { name, posterLink, eventId} , index) => (
+                <li key={index}>
+                  <img 
+                    alt="movie"
+                    src={posterLink}>
+                  </img>
 
-                <p>
-                  {movie.name}
-                </p>
+                  <p>
+                    {name}
+                  </p>
 
-              <Link to={`/movie-description/${movie.eventId}`}>
-                <Button 
-                    id={index} 
+                <Link to={`/movie-description/${eventId}`}>
+                  <Button 
                     title="Buy a ticket"
-                />
-              </Link>
-              </li>
-          ))
+                    className="buy-ticket"
+                  />
+                </Link>
+                </li>
+            ))
           }
 
           {
-            !!movies.length || (
-              <div className="noMovies">We’ve found no movies, sorry!</div>
+            !!movies?.length || (
+              <div className="no-movies">We’ve found no movies, sorry!</div>
             )
           }
 

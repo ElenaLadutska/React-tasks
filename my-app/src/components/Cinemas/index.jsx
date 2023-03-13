@@ -1,32 +1,30 @@
 import DateObject from "react-date-object";
 
-function Cinemas (name) {
-  const showDate = (date) => {
-    const movieDate = new DateObject(date).format("DD-MM-YYYY");
+const Cinemas = (props) => {
+  const { list } = props;
 
-    return movieDate
-  }
+  const showDate = (date) => {
+    return new DateObject(date).format("DD-MM-YYYY"); 
+  };
 
   const startTime = (place) => {
-    const time = new DateObject(place).format("HH:mm");
-
-    return time;
+    return new DateObject(place).format("HH:mm");
   };
 
   return (
     <>
-      {name.film.showList
-        ? Object.entries(name.film.showList).map(([date, value], index) => (
+      {!!list
+        ? Object.entries(list).map(([date, value], index) => (
           <div 
             key={index}
-            className="showDate"
+            className="show-date"
           >
             <h2>{showDate(Date.parse(date))}</h2>
 
             {value.map((place, index) => {
               return (
                 <div 
-                  className="placeAndTime"
+                  className="place-and-time"
                   key={index}>
                     
                     <div className="place">{place.theater.name}</div>
@@ -38,7 +36,7 @@ function Cinemas (name) {
               )})}
           </div>
           ))
-        : <div className="noCinemas">No cinemas to show yet</div>
+        : <div className="no-cinemas">No cinemas to show yet</div>
       }
     </>
   )

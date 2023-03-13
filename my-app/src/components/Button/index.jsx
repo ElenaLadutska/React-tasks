@@ -1,7 +1,8 @@
-function Button(props) {
+const Button = (props) => {
+  const { title, className } = props;
   return (
-    <button className={props.className} id={props.id} > 
-      {props.title}
+    <button className={className} > 
+      {title}
     </button>
   )
 }

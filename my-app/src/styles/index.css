@@ -2,47 +2,45 @@
   font-family: "BebasNeue";
   src: url(../font/Raleway-Bold.ttf);
 }
-.moviesContainer {
+.movies-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.moviesContainer input {
+.movies-container input {
   align-self: flex-end;
   background-color: #000;
   color: #fff;
-  border: 1px solid #6428cc;
+  border: 2px solid #6428cc;
   border-radius: 15px;
   margin-bottom: 1.5vh;
+  outline: none;
   font-family: "BebasNeue", Helvetica, sans-serif;
   font-size: 2vh;
   padding: 0.6em;
-  transition: all 0.7s linear;
+  transition: border 0.5s linear;
 }
-.moviesContainer input:hover,
-.moviesContainer input:focus {
-  outline: 2px solid #0ebeac;
+.movies-container input:hover,
+.movies-container input:focus {
+  outline: none;
+  border: 2px solid #0ebeac;
 }
-.moviesContainer ::-moz-placeholder {
+.movies-container ::-moz-placeholder {
   color: #fff;
   opacity: 0.8;
 }
-.moviesContainer :-ms-input-placeholder {
+.movies-container ::placeholder {
   color: #fff;
   opacity: 0.8;
 }
-.moviesContainer ::placeholder {
-  color: #fff;
-  opacity: 0.8;
-}
-.moviesContainer .movies {
+.movies-container .movies {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 1vh 5.5vh;
 }
-.moviesContainer .movies li {
+.movies-container .movies li {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -52,21 +50,21 @@
   transition: all 0.3s ease-in-out;
   text-align: center;
 }
-.moviesContainer .movies li img {
+.movies-container .movies li img {
   width: 220px;
   height: 300px;
   transition: all 0.3s;
   opacity: 85%;
   margin-bottom: 1vh;
 }
-.moviesContainer .movies li img:hover {
+.movies-container .movies li img:hover {
   transform: scale(1.05);
   opacity: 100%;
 }
-.moviesContainer .movies li p {
+.movies-container .movies li p {
   width: 220px;
 }
-.moviesContainer .movies li p:hover {
+.movies-container .movies li p:hover {
   color: #0ebeac;
 }
 
@@ -74,27 +72,97 @@
   display: flex;
   flex-wrap: wrap;
 }
-.movie img {
+.movie .img-container {
   width: 220px;
   height: 330px;
-  transition: all 0.3s;
-  margin-bottom: 1vh;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: #6428cc 10px 10px 50px;
+  transition: all 0.5s;
+}
+.movie .img-container img {
+  display: block;
+  max-width: 100%;
+  min-height: 100%;
+  border: none;
+}
+.movie .img-container:hover {
+  box-shadow: #0ebeac 10px 10px 50px;
 }
 .movie h1 {
-  font-size: xx-large;
+  font-size: xxx-large;
   color: #6428cc;
 }
-.movie h2 {
-  color: #6428cc;
-  font-size: larger;
-}
-.movie h3 {
-  margin: 1vh 0;
-}
-.movie .movieInfo {
+.movie .movie-info {
   text-align: justify;
-  width: calc(100% - 220px - 2em);
+  width: calc(100% - 220px - 3em);
   padding: 0 1em;
+  margin-left: 1em;
+}
+.movie .movie-info .movie-title h1 {
+  margin-bottom: 1rem;
+}
+.movie .movie-info .movie-title .genres {
+  margin: 1.5em 0.5em 1em;
+}
+.movie .movie-info .movie-title .genres > * {
+  background-color: rgba(100, 40, 204, 0.35);
+  border: 1px solid rgba(100, 40, 204, 0.7);
+  border-radius: 10px;
+  padding: 0.25em 0.6em;
+  margin-right: 0.5em;
+  font-size: small;
+  opacity: 90%;
+}
+.movie .movie-info .additional-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.movie .movie-info .additional-info .play-btn {
+  background-color: #6428cc;
+  transition: all 0.5s;
+}
+.movie .movie-info .additional-info .play-btn a img {
+  filter: invert(100%);
+}
+.movie .movie-info .additional-info .play-btn:hover {
+  background-color: #0ebeac;
+  border: 2px solid #0ebeac;
+}
+.movie .movie-info .additional-info span {
+  font-size: small;
+  justify-content: flex-start;
+  opacity: 50%;
+  transform: rotate(-90deg);
+}
+.movie .movie-info .additional-info > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(100, 40, 204, 0.7);
+  border-radius: 20px;
+  padding: 0.5em;
+  margin-right: 0.5em;
+  font-size: x-large;
+  height: 4rem;
+  width: 10rem;
+}
+.movie .annotation {
+  margin: 2rem 0;
+}
+.movie .annotation h2 {
+  opacity: 50%;
+  margin-bottom: 0.5rem;
+}
+.movie .annotation p {
+  font-size: small;
+  opacity: 80%;
 }
 
 button {
@@ -128,7 +196,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 1.5vh;
+  margin-bottom: 3.5vh;
 }
 
 .loader {
@@ -139,17 +207,7 @@ header {
   border-top: 3px solid #FFF;
   border-right: 3px solid transparent;
   box-sizing: border-box;
-  -webkit-animation: rotation 1s linear infinite;
-          animation: rotation 1s linear infinite;
-}
-
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  animation: rotation 1s linear infinite;
 }
 
 @keyframes rotation {
@@ -166,17 +224,17 @@ header {
   flex-wrap: nowrap;
   flex-direction: column;
 }
-.cinemas .showDate,
-.cinemas .noCinemas {
+.cinemas .show-date,
+.cinemas .no-cinemas {
   margin: 2em 1em 0 0;
 }
-.cinemas .showDate {
+.cinemas .show-date {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   border-bottom: 2px solid #6428cc;
 }
-.cinemas .showDate .placeAndTime {
+.cinemas .show-date .place-and-time {
   border: 1px solid #6428cc;
   border-radius: 15px;
   cursor: pointer;
@@ -189,15 +247,19 @@ header {
   width: 100px;
   transition: all 0.5s;
 }
-.cinemas .showDate .placeAndTime .place {
+.cinemas .show-date .place-and-time .place {
   font-size: small;
   margin-bottom: 0.5rem;
 }
-.cinemas .showDate .placeAndTime .time {
+.cinemas .show-date .place-and-time .time {
   font-size: larger;
 }
-.cinemas .showDate .placeAndTime:hover {
+.cinemas .show-date .place-and-time:hover {
   border: 1px solid #0ebeac;
+}
+.cinemas .show-date h2 {
+  color: #6428cc;
+  font-size: larger;
 }
 
 #cities {

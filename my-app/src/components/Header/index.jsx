@@ -1,7 +1,9 @@
 import Button from '../Button';
 import Cities from '../Cities'
 
-function Header(props) {
+const Header = (props) => {
+  const { city, setCity } = props;
+
   return (
     <header>
       <div className="logo">
@@ -10,10 +12,13 @@ function Header(props) {
       </div>
       
       <Cities 
-        city={props.city} 
-        setCity={props.setCity}/>
+        city={city} 
+        setCity={setCity}/>
 
-      <Button title="SIGN IN" className="signIn"/>
+      <Button 
+        title="SIGN IN" 
+        className="sign-in" 
+      />
     </header>
   )
 }
