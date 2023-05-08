@@ -2,37 +2,35 @@
   font-family: "BebasNeue";
   src: url(../font/Raleway-Bold.ttf);
 }
-.movies-container {
+.authorization {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.movies-container input {
-  align-self: flex-end;
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #6428cc;
-  border-radius: 15px;
-  margin-bottom: 1.5vh;
-  outline: none;
-  font-family: "BebasNeue", Helvetica, sans-serif;
-  font-size: 2vh;
-  padding: 0.6em;
-  transition: border 0.5s linear;
+.authorization .users-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.movies-container input:hover,
-.movies-container input:focus {
-  outline: none;
-  border: 2px solid #0ebeac;
+.authorization .create-acc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.movies-container ::-moz-placeholder {
-  color: #fff;
-  opacity: 0.8;
+.authorization .creating-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.movies-container ::placeholder {
-  color: #fff;
-  opacity: 0.8;
+
+.movies-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .movies-container .movies {
   display: flex;
@@ -63,9 +61,6 @@
 }
 .movies-container .movies li p {
   width: 220px;
-}
-.movies-container .movies li p:hover {
-  color: #0ebeac;
 }
 
 .movie {
@@ -179,8 +174,7 @@ button {
 button:hover {
   border: 2px solid #0ebeac;
   background-color: #0ebeac;
-  transform: scale(1.3);
-  color: #fff;
+  color: #000;
 }
 
 .scroll {
@@ -190,6 +184,18 @@ button:hover {
   bottom: 50px;
   right: 50px;
   background-color: #6428cc;
+}
+
+:disabled {
+  color: #6428cc;
+  cursor: copy;
+}
+
+:disabled:hover {
+  background-color: transparent;
+  border: 2px solid #6428cc;
+  color: #6428cc;
+  cursor: no-drop;
 }
 
 header {
@@ -281,12 +287,57 @@ header {
   border: 1px solid #0ebeac;
 }
 
+.wrong-passwords {
+  font-size: small;
+}
+
+.create-acc-btn p {
+  font-size: small;
+}
+
 body {
   font-family: "BebasNeue", Helvetica, sans-serif;
   background-color: #000;
   color: #fff;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 body a:hover {
   color: #0ebeac;
+}
+
+input {
+  align-self: flex-end;
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #6428cc;
+  border-radius: 15px;
+  margin-bottom: 1.5vh;
+  outline: none;
+  font-family: "BebasNeue", Helvetica, sans-serif;
+  font-size: 2vh;
+  padding: 0.6em;
+  transition: border 0.5s linear;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 40rem #000 inset;
+}
+
+input:hover,
+input:focus {
+  outline: none;
+  border: 2px solid #0ebeac;
+}
+
+::-moz-placeholder {
+  color: #fff;
+  opacity: 0.8;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 0.8;
 }/*# sourceMappingURL=index.css.map */

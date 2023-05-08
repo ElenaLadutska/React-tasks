@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import getMoviesInfo from "./getMoviesInfo";
 import Button from "./components/Button";
 import Loader from "./components/Loader";
@@ -20,6 +20,8 @@ const Movies = (props) => {
 
   const [scrollTop, setScrollTop] = useState(0);
 
+  let navigate = useNavigate();
+
   const getMovies = useCallback(() => {
     try {
       getMoviesInfo(city, setMovies);
@@ -37,6 +39,10 @@ const Movies = (props) => {
       movie => movie.name.toLowerCase().includes(value.toLowerCase()))),
     [movies, value],
   );
+
+  const navigateToTheLink = (path) => {
+    navigate(`/${path}`)
+  }
 
   useEffect(() => {
     getMovies();
@@ -83,12 +89,11 @@ const Movies = (props) => {
                     {name}
                   </p>
 
-                <Link to={`/movie-description/${eventId}`}>
                   <Button 
                     title="Buy a ticket"
                     className="buy-ticket"
+                    onClickFunc={() => navigateToTheLink(`movie-description/${eventId}`)}
                   />
-                </Link>
                 </li>
             ))
           }
@@ -111,6 +116,7 @@ const Movies = (props) => {
         }
       </div>
     )
+
   )
 }
 

@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'mixins';
+@import 'modal';
 @import 'movies';
 @import 'movie';
 @import 'buttons';
@@ -7,6 +8,7 @@
 @import 'loader';
 @import 'cinemas';
 @import 'cities';
+@import 'sign';
 
 body {
   font-family: $fonts; 
@@ -17,4 +19,36 @@ body {
     a:hover {
       color: $hover-color;
     }
+}
+
+input{
+  align-self: flex-end;
+  background-color: $background-color;
+  color: $text-color;
+  border: 2px solid $primary-color;
+  border-radius: 15px;
+  margin-bottom: 1.5vh;
+  outline: none;
+  font-family: $fonts;
+  font-size: 2vh;
+  padding: 0.6em;
+  transition: border 0.5s linear;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $text-color;
+  -webkit-box-shadow: 0 0 0px 40rem $background-color inset;
+}
+
+input:hover,
+input:focus {
+  outline: none;
+  border: 2px solid $hover-color;
+}
+
+::placeholder {
+  color: $text-color;
+  opacity: 0.8;
 }

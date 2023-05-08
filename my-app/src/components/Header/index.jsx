@@ -1,8 +1,19 @@
+import { useNavigate } from "react-router-dom";
+import Cities from '../Cities';
 import Button from '../Button';
-import Cities from '../Cities'
 
-const Header = (props) => {
-  const { city, setCity } = props;
+const Header = ({ city, setCity, isAuthorized, setAuthorisation, isModalOpen, setOpenModal }) => {
+
+  const changeFormType = () => {
+    setOpenModal(!isModalOpen);
+    navigateToTheLink("authorization")
+  };
+
+  let navigate = useNavigate();
+
+  const navigateToTheLink = (path) => {
+    navigate(`/${path}`)
+  };
 
   return (
     <header>
@@ -16,8 +27,9 @@ const Header = (props) => {
         setCity={setCity}/>
 
       <Button 
-        title="SIGN IN" 
-        className="sign-in" 
+        title={isAuthorized ? 'SIGN OUT': 'SIGN IN'} 
+        className={isAuthorized ? 'signOut': 'signIn'} 
+        onClickFunc={changeFormType}
       />
     </header>
   )

@@ -1,14 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import DateObject from "react-date-object";
-import getMoviesInfo from "../../getMoviesInfo";
 import player from "./img/bigPlayer.png";
-
 import Cinemas from "../Cinemas";
 
-const Movie = (props) => {
+const Movie = ({ city }) => {
   const { id } = useParams();
-  const { city } = props;
 
   const [movie, setMovies] = useState([]); 
   let [isError, setIsError] = useState(false);
@@ -20,13 +17,13 @@ const Movie = (props) => {
       .then(data => setMovies(data));
     } catch (error) {
       setIsError(isError = true);
-      console.log(isError)
+      alert('Something wrong')
     }
   };
 
   useEffect(() => {
     getMovie()}, 
-    [id]
+    [id, city]
   );
 
   const startTime = (place) => {
@@ -48,7 +45,6 @@ const Movie = (props) => {
                 
                 <div className="img-container">
                   <img 
-                    alt="movie image"
                     src={posterLink}>
                   </img>
                 </div>
@@ -70,14 +66,13 @@ const Movie = (props) => {
                   </div>
 
                   <div className="additional-info">
-                    <p className="play-btn">
                       <a 
+                        className="play-btn"
                         href={trailerLink}
                         target="_blank"
                         rel="noreferrer">
                         <img src={player} alt="player" />
                       </a>
-                    </p>
 
                     <div className="release-date">
                       <span>RELEASE</span>
@@ -104,7 +99,9 @@ const Movie = (props) => {
                 </div>
 
                 <div className="cinemas">
-                  {<Cinemas list={showList} />}
+                  {<Cinemas 
+                    list={showList} 
+                    city={city} />}
                 </div>
               </div>
           )

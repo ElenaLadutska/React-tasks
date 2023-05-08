@@ -1,0 +1,16 @@
+.authorization {
+  @include flex-center-column();
+
+  .users-data {
+    @include flex-center-column();
+  }
+
+  .create-acc-btn {
+    @include flex-center();
+  }
+
+  .creating-account {
+    @include flex-center-column();
+
+  }
+}

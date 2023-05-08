@@ -1,8 +1,7 @@
+// import { useState, useEffect } from "react";
 import DateObject from "react-date-object";
 
-const Cinemas = (props) => {
-  const { list } = props;
-
+const Cinemas = ({ list}) => {
   const showDate = (date) => {
     return new DateObject(date).format("DD-MM-YYYY"); 
   };
@@ -36,7 +35,9 @@ const Cinemas = (props) => {
               )})}
           </div>
           ))
-        : <div className="no-cinemas">No cinemas to show yet</div>
+        : <div className="no-cinemas">
+            No cinemas to show yet
+          </div>
       }
     </>
   )

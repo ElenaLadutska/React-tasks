@@ -2,6 +2,7 @@ import { CITIES } from "../../constants";
 
 const Cities = (props) => {
   const { city, setCity } = props;
+
   return (
     <>
       <select 
