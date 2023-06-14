@@ -1,6 +1,5 @@
 .cinemas {
   @include flex();
-  flex-wrap: nowrap;
   flex-direction: column;
 
   .show-date,
@@ -9,9 +8,11 @@
   }
 
   .show-date {
-    @include flex();
-    align-items: center;
     border-bottom: 2px solid $primary-color;
+
+    .places {
+      @include flex();
+    }
 
     .place-and-time {
       border: 1px solid $primary-color;
@@ -39,7 +40,7 @@
     }
 
     h2 {
-      color: $primary-color;
+      color: $text-color;
       font-size: larger;
     }
   }

@@ -1,6 +1,6 @@
 .movie {
-  @include flex();
-
+  padding: 1em;
+  
   .img-container {
     width: 220px;
     height: 330px;
@@ -10,7 +10,7 @@
     overflow: hidden;
     box-shadow: $primary-color 10px 10px 50px;
     transition: all 0.5s;
-
+  
     img{
       display: block;
       max-width: 100%;
@@ -18,91 +18,146 @@
       border: none;
     }
   }
-
+  
   .img-container:hover {
     box-shadow: $hover-color 10px 10px 50px;
   }
 
   h1 {
-    font-size: xxx-large;
+    font-size: xx-large;
     color: $primary-color;
   }
 
-  .movie-info {
-    text-align:justify;
-    width: calc(100% - 220px - 3em);
-    padding: 0 1em;
-    margin-left: 1em;
-
-    .movie-title {
-      h1 {
-        margin-bottom: 1rem;
-      }
-
-      .genres {
-        margin: 1.5em 0.5em 1em;
-      }
-
-      .genres > * {
-        background-color: rgba($color: $primary-color, $alpha: 0.35) ;
-        border: 1px solid rgba($color: $primary-color, $alpha: 0.7);
-        border-radius: 10px;
-        padding: 0.25em 0.6em;
-        margin-right: 0.5em;
-        font-size: small;
-        opacity: 90%;
-      }
+  .movie-title {
+    h1 {
+      margin: 0.5em 0;
     }
+
+    .genres {
+      margin: 0.5em 0;
+    }
+
+    .genres > * {
+      background-color: rgba($color: $primary-color, $alpha: 0.35) ;
+      border: 1px solid rgba($color: $primary-color, $alpha: 0.7);
+      border-radius: 10px;
+      padding: 0.25em 0.6em;
+      margin-right: 0.5em;
+      font-size: small;
+      opacity: 90%;
+    }
+  }
+
+  .additional-info {
+    @include flex-center();
+    margin-top: 1.5rem;
+    height: fit-content;
+
+      .play-btn {
+        background-color: $primary-color;
+        transition: all 0.5s;
+
+        a img{
+          filter: invert(100%);
+        }
+      }
+
+      .play-btn:hover {
+        background-color: $hover-color;
+        border: 2px solid $hover-color;
+      }
+
+      span {
+        font-size: small;
+        justify-content: flex-start;
+        opacity: 50%;
+        transform: rotate(-90deg);
+        hyphens: auto;
+      }
+  }
+
+  .additional-info > * {
+    @include flex-center();
+    justify-content: space-around;
+    border: 2px solid rgba($color: $primary-color, $alpha: 0.7);
+    border-radius: 20px;
+    margin-right: 1em;
+    font-size: medium;
+    height: 6rem;
+    width: 10rem;
+    padding: 1rem;
+  }
+
+  .description {
+    margin: 1em 0;
+
+    h2 {
+      opacity: 70%;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: small;
+      opacity: 85%;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .movie{
+    @include flex-center();
+    flex-direction: column;
+    width: auto;
+
+    .img-container {
+      width: 17em;
+      height: 24em;
+    }
+
+    .movie-info {
+      text-align: center;
 
       .additional-info {
-        @include flex-center();
-        margin-top: 2.5rem;
-        height: fit-content;
-
-          .play-btn {
-            background-color: $primary-color;
-            transition: all 0.5s;
-            a img{
-              filter: invert(100%);
-            }
-          }
-
-          .play-btn:hover {
-            background-color: $hover-color;
-            border: 2px solid $hover-color;
-          }
-
-          span {
-            font-size: small;
-            justify-content: flex-start;
-            opacity: 50%;
-            transform: rotate(-90deg);
-          }
+        flex-wrap: wrap;
       }
 
-      .additional-info > * {
-        @include flex-center();
-        border: 2px solid rgba($color: $primary-color, $alpha: 0.7);
-        border-radius: 20px;
-        padding: 0.5em;
-        margin-right: 0.5em;
-        font-size: x-large;
-        height: 4rem;
-        width: 10rem;
+      .additional-info > * { 
+        font-size: medium;
+        margin: 1em;
+        padding: .5rem;
       }
     }
+  }
+}
 
-    .annotation {
-      margin: 2rem 0;
+@media screen and (min-width: 650px) {
+  .movie {
+    @include flex();
 
-      h2 {
-        opacity: 50%;
-        margin-bottom: 0.5rem;
+    .movie-info {
+      text-align:justify;
+      width: calc(100% - 220px - 3em);
+      padding: 0 1em;
+      margin-left: 1em;
+
+      .movie-title {
+        h1 {
+          margin-bottom: 1rem;
+        }
+
+        .genres {
+          margin: 1.5em 0.5em 1em;
+        }
       }
 
-      p {
-        font-size: small;
-        opacity: 80%;
+        .additional-info {
+          margin-top: 2.5rem;
+        }
+
+        .additional-info > * {
+          margin-right: 0.5em;
+          font-size: x-large;
+        }
       }
-    }
+  }
 }

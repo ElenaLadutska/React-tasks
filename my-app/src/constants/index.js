@@ -1,10 +1,10 @@
 export const CITIES = [
   {
     value: 1,
-    label: "Minsk"
+    label: "Минск"
   },
   {
     value: 5,
-    label: "Grodno"
+    label: "Гродно"
   },
 ]

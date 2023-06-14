@@ -6,13 +6,13 @@ button {
   cursor: pointer;
   margin: 1vh;
   transition: all 0.3s ease-in;
-  font-family: $fonts;
+  font-family: $font;
 }
 
 button:hover {
   border: 2px solid $hover-color;
-  background-color: $hover-color;
-  color: $background-color;
+  background-color: transparent;
+  color: $hover-color;
 }
 
 .scroll {
@@ -34,4 +34,8 @@ button:hover {
   border: 2px solid $primary-color;
   color: $primary-color;
   cursor: no-drop;
+}
+
+.buy-ticket {
+  padding: .5em;
 }

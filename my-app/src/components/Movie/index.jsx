@@ -1,56 +1,69 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import Alert from '@mui/material/Alert';
 import DateObject from "react-date-object";
 import player from "./img/bigPlayer.png";
 import Cinemas from "../Cinemas";
 
-const Movie = ({ city }) => {
+const Movie = ({ city, isNotificationOpen, isAuthorized, setOpenNotification }) => {
+  console.log(window.location.href);
   const { id } = useParams();
 
   const [movie, setMovies] = useState([]); 
+
   let [isError, setIsError] = useState(false);
 
-  const getMovie = async() => {
+  const getMovie = useCallback(() => {
     try {
       fetch(`https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22event%22:%22${id}%22,%22city%22:%22${city}%22%7D&extended=true`)
       .then(response => response.json())
       .then(data => setMovies(data));
     } catch (error) {
-      setIsError(isError = true);
+      setIsError(true);
       alert('Something wrong')
     }
-  };
+  }, [id, city]);
 
   useEffect(() => {
     getMovie()}, 
-    [id, city]
+    [id, city, getMovie]
   );
 
-  const startTime = (place) => {
-    const time = new DateObject(place).format("MMMM DD, YYYY");
-
-    return time;
-  };
+  const startTime = (place) =>  new DateObject(place).format("MMMM DD, YYYY");
 
   return(
     <>
+      {isNotificationOpen && !isAuthorized &&
+        <div className='notification'>
+          <Alert 
+            severity="warning"
+            onClick={() => setOpenNotification(false)}
+          >
+            Log in to buy a ticket, please!
+          </Alert>
+        </div>
+      
+      }
+
       {!!movie?.length &&
           movie.map(
             ({
-              name, posterLink, genres, runTime, annotation, rentalDateStart, ageLimit, trailerLink, showList
+              name, posterLink, bannerLink,genres, runTime, annotation, rentalDateStart, ageLimit, trailerLink, showList
             }, index) => {
             return (
               <div className="movie"
-               key={index}>
-                
+               key={index}
+               >
                 <div className="img-container">
                   <img 
+                  alt="poster"
                     src={posterLink}>
                   </img>
                 </div>
 
-  
-                <div className="movie-info">
+                <div 
+                  className="movie-info"
+                >
                   <div className="movie-title">
                     <h1>{name}</h1>
 
@@ -75,23 +88,23 @@ const Movie = ({ city }) => {
                       </a>
 
                     <div className="release-date">
-                      <span>RELEASE</span>
+                      <span>ДАТА ВЫХОДА</span>
                       <p>{startTime(Date.parse(rentalDateStart))}</p>
                     </div>
 
                     <div className="run-time">
-                      <span>LENGTH</span>
+                      <span>ДЛИТЕЛЬНОСТЬ</span>
                       <p>{runTime} min </p>
                     </div>
 
                     <div className="age-limit">
-                      <span>AGE</span>
+                      <span>ВОЗРАСТ</span>
                       <p>{ageLimit.acronym}</p>
                     </div>
                   </div>
 
-                  <div className="annotation">
-                    <h2>DESCRIPTION</h2>
+                  <div className="description">
+                    <h2>ОПИСАНИЕ</h2>
                     <p>
                       {annotation}
                     </p>
@@ -101,7 +114,10 @@ const Movie = ({ city }) => {
                 <div className="cinemas">
                   {<Cinemas 
                     list={showList} 
-                    city={city} />}
+                    city={city} 
+                    isAuthorized = {isAuthorized}
+                    setOpenNotification ={setOpenNotification}
+                  />}
                 </div>
               </div>
           )

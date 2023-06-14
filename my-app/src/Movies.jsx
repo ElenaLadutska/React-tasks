@@ -5,10 +5,8 @@ import Button from "./components/Button";
 import Loader from "./components/Loader";
 import ScrollButton from "./components/ScrollButton";
 
-const Movies = (props) => {
-  const { city } = props;
-
-  let [isLoading, setLoading] = useState(false);
+const Movies = ({ city }) => {
+  let [isLoading, setLoading] = useState(true);
 
   const [movies, setMovies] = useState([]);
 
@@ -18,18 +16,17 @@ const Movies = (props) => {
 
   const [filteredMovies, setFilteredMovies] = useState([]);
 
+
   const [scrollTop, setScrollTop] = useState(0);
 
   let navigate = useNavigate();
 
   const getMovies = useCallback(() => {
     try {
-      getMoviesInfo(city, setMovies);
-      setLoading(false);
+      getMoviesInfo(city, setMovies, setLoading);
     } 
     catch (error) {
       setError(true);
-      throw new Error("Something wrong with server")
     }
   }, [city]);
 
@@ -66,58 +63,63 @@ const Movies = (props) => {
   }, []);
 
   return (
-    isLoading ? <Loader /> : (
-      <div className="movies-container">
-        <input 
-          type="text" 
-          onChange={event => setValue(event.target.value)}
-          value={value}
-          placeholder="Enter movies title..."
-        />
+    <>
+      {isLoading && <Loader />}
 
-        <ul className="movies">
-          {!!movies?.length &&
-            filteredMovies.map((
-              { name, posterLink, eventId} , index) => (
-                <li key={index}>
-                  <img 
-                    alt="movie"
-                    src={posterLink}>
-                  </img>
+      {
+        !isLoading &&
+        <div className="movies-container">
+          <input 
+            type="text" 
+            onChange={event => setValue(event.target.value)}
+            value={value}
+            placeholder="Поиск..."
+          />
 
-                  <p>
-                    {name}
-                  </p>
+          <ul className="movies">
+            {!!movies?.length &&
+              filteredMovies.map((
+                { name, posterLink, eventId} , index) => (
+                  <li key={index}>
+                    <img 
+                      alt="movie"
+                      src={posterLink}>
+                    </img>
 
-                  <Button 
-                    title="Buy a ticket"
-                    className="buy-ticket"
-                    onClickFunc={() => navigateToTheLink(`movie-description/${eventId}`)}
-                  />
-                </li>
-            ))
-          }
+                    <h2>
+                      {name}
+                    </h2>
+                  
+                    <Button 
+                      title="Купить билет"
+                      className="buy-ticket"
+                      onClickFunc={() => navigateToTheLink(`movie-description/${eventId}`)}
+                    />
+                  </li>
+              ))
+            }
+
+            {
+              !movies?.length && !isLoading && (
+                <div className="no-movies">Мы не нашли фильмы!</div>
+              )
+            }
+
+            {
+              isError && (
+                <div className="error">Упс, что-то пошло не так, попробуйте еще раз</div>
+              )
+            }
+          </ul>
+
 
           {
-            !!movies?.length || (
-              <div className="no-movies">We’ve found no movies, sorry!</div>
-            )
+            scrollTop > 200 ? <ScrollButton /> : ""
           }
-
-          {
-            isError && (
-              <div className="error">Oops, something went wrong</div>
-            )
-          }
-        </ul>
-
-        {
-          scrollTop > 200 ? <ScrollButton /> : ""
-        }
       </div>
+      }
+    </>
     )
-
-  )
 }
 
 export default Movies;

@@ -1,11 +1,7 @@
-import { useState } from "react";
 import Header from "../Header";
 import { Outlet } from "react-router-dom";
 
-const Layout = ({ city, setCity }) => {
-  const [isAuthorized, setAuthorisation ] = useState(false);
-  const [isModalOpen, setOpenModal] = useState(false);
-
+const Layout = ({ city, setCity, isAuthorized, setAuthorisation,setOpenModal, authoriedUser, setUser }) => {
   return (
     <>
       <Header 
@@ -13,8 +9,9 @@ const Layout = ({ city, setCity }) => {
         setCity={setCity}
         isAuthorized = {isAuthorized}
         setAuthorisation = {setAuthorisation}
-        isModalOpen = {isModalOpen}
         setOpenModal = {setOpenModal}
+        authoriedUser = {authoriedUser}
+        setUser = {setUser}
       />
 
       <Outlet />

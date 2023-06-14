@@ -1,6 +1,11 @@
 .movies-container {
   @include flex-center();
   flex-direction: column;
+  z-index: 1;
+
+    input {
+      width: 50%
+    }
 
     .movies {
       @include flex();
@@ -16,12 +21,17 @@
         transition: all 0.3s ease-in-out;
         text-align: center;
 
-        img{
+        h2 {
+          line-height: 1.3;
+        }
+
+        img {
           width: 220px;
           height: 300px;
           transition: all 0.3s;
           opacity: 85%;
           margin-bottom: 1vh;
+        border-radius: 22px;
         }
 
         img:hover {
@@ -29,7 +39,7 @@
           opacity: 100%;
         }
 
-        p {
+        h2 {
           width: 220px;
         }
       }
