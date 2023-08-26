@@ -1,0 +1,44 @@
+.restore {
+  @include flex-center-column();
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  z-index: 2;
+  background-color: rgba($color: $background-color, $alpha: .9);
+
+  .restore-content {
+    @include flex-center-column();
+    border-radius: 10px;
+    border: 1px solid $primary-color;
+    background-color: $background-color;
+    padding: 1em;
+
+    label {
+      color: $primary-color;
+      margin: 2em 0 0 0;
+    }
+
+    input {
+      margin: .5em 0;
+    }
+
+    h1 {
+      font-size: 1.25em;
+      font-weight: 600;
+      color: $primary-color;
+      letter-spacing: .2em;
+    }
+  
+    .header-paragraph {
+      font-size: .8em;
+      margin: .5em 0;
+    }
+
+    .back-to-auth {
+      align-self: self-start;
+      margin: 3.5em 0 0 0;
+    }
+  }
+}
