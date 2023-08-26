@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import addNewUser from "../signInLogic";
+import PasswordBox from "../PasswordBox";
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -11,16 +12,22 @@ const SignUp = () => {
   const [userPassword, setUserPassword] = useState('');
   const [repUserPassword, setRepUserPassword] = useState('');
 
+  const [isPasswordSafe, setPasswordSafety] = useState(false);
+
   const [isRegistered, setRegistered]= useState(false);
   const [isAlreadyRegistered, setAlreadyRegistered]= useState(false);
+
 
   let isFormField = userPassword && repUserPassword 
     && (userPassword === repUserPassword) 
     && username && userFirstname 
     && userLastname && userPhone;
+
+  let checkPassword = (password) => {
+    return password.length >= 8
+  };
     
-  let isPasswordsNotSame = userPassword && repUserPassword 
-    && !(userPassword === repUserPassword);
+  let isPasswordsNotSame = userPassword && repUserPassword && !(userPassword === repUserPassword);
 
   let navigate = useNavigate();
 
@@ -45,7 +52,7 @@ const SignUp = () => {
             <form className="creating-account">
               <input type="text"
                 id="username"
-                placeholder="Адрес электронной почты"
+                placeholder="Логин / электронная почта"
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
                 />
@@ -71,32 +78,46 @@ const SignUp = () => {
                 value={userPhone}
               />
 
-              <input type="password" 
-                id="password" 
-                placeholder="Пароль"
-                onChange={e => setUserPassword(e.target.value)}
-                value={userPassword}
-              />
-                
-              <input type="password" 
-                id="rep-password" 
-                placeholder="Повторите пароль" 
-                onChange={(e) => setRepUserPassword(e.target.value)}
-                value={repUserPassword}
-              />
+              <div className="password-content">
+                <PasswordBox 
+                  id="password"
+                  placeholder="Пароль"
+                  value={userPassword}
+                  onChange={e => {
+                    setUserPassword(e.target.value);
+                    setPasswordSafety(() => checkPassword(e.target.value));
+                  }}
+                />
 
-              { isPasswordsNotSame &&
-                <div className="wrong-passwords"> 
-                  Passwords aren't same
+                {!isPasswordSafe && 
+                  <div className="hints">
+                  *не менее 8 знаков
                 </div>
-              }
+                }
+              </div>
+
+              <div className="password-content">
+                <PasswordBox 
+                  id="rep-password"
+                  placeholder="Повторите пароль" 
+                  onChange={(e) => setRepUserPassword(e.target.value)}
+                  value={repUserPassword}
+                  />
+
+                { isPasswordsNotSame &&
+                  <div className="hints">
+                    Пароли не совпадают
+                  </div>
+                }
+              </div>
 
               {(!isAlreadyRegistered && !isRegistered) && isFormField 
               &&
                 <Button 
                   disabled={false}
                   type="submit"
-                  title="Sign up"
+                  className="sign-up-btn"
+                  title="ЗАРЕГИСТРИРОВАТЬСЯ"
 
                   onClickFunc={() => {
                     addNewUser(username, userFirstname,userLastname,userPhone, userPassword, setAlreadyRegistered , setRegistered);
@@ -108,7 +129,8 @@ const SignUp = () => {
               {(!isAlreadyRegistered && !isRegistered) && !isFormField 
                 && <Button 
                     disabled={true}
-                    title="Sign up"
+                    className="sign-up-btn"
+                    title="ЗАРЕГИСТРИРОВАТЬСЯ"
                   />
               }
           </form>
@@ -117,7 +139,7 @@ const SignUp = () => {
           {isAlreadyRegistered && 
             <div className="alreadyRegistered">
               <p>
-                You've already been registered
+                Вы были уже ранее зарегистрированы по этому логину
               </p>
             </div>
           }
@@ -125,7 +147,7 @@ const SignUp = () => {
           {isRegistered && !isAlreadyRegistered &&
             <div className="registered">
               <p>
-                You've successfully signed up, now you can sign in to the app
+                Вы успешно прошли регистрацию. Теперь вы можете войти в систему
               </p>
             </div>
           }

@@ -6,7 +6,6 @@ import player from "./img/bigPlayer.png";
 import Cinemas from "../Cinemas";
 
 const Movie = ({ city, isNotificationOpen, isAuthorized, setOpenNotification }) => {
-  console.log(window.location.href);
   const { id } = useParams();
 
   const [movie, setMovies] = useState([]); 
@@ -29,7 +28,7 @@ const Movie = ({ city, isNotificationOpen, isAuthorized, setOpenNotification }) 
     [id, city, getMovie]
   );
 
-  const startTime = (place) =>  new DateObject(place).format("MMMM DD, YYYY");
+  const startTime = (place) => new DateObject(place).format("MMMM DD, YYYY");
 
   return(
     <>

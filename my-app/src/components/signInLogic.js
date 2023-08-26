@@ -1,24 +1,24 @@
-function User (mail, name, surname, phone, password) {
+function User (login, name, surname, phone, password) {
   this.isAuth = false;
-  this.mail = mail;
   this.name = name;
   this.surname = surname;
+  this.login = login;
   this.phone = phone;
   this.password = password;
 };
 
-const addNewUser = ( mail, name, surname, phone, password, setAlreadyRegistered, setRegistered ) => {
+const addNewUser = ( login, name, surname, phone, password, setAlreadyRegistered, setRegistered ) => {
   const users = JSON.parse(localStorage.getItem('users')) || [];
-  const newUser = new User(mail, name, surname, phone, password);
+  const newUser = new User(login, name, surname, phone, password);
 
   if (!users.length) {
     users.push(newUser);
     setRegistered(true);
   } else {
     users.map((user) => {
-      if (user.mail === mail) {
+      if (user.login === login) {
         setAlreadyRegistered(true);
-      } else if (users.every(user =>  user.mail !== mail)){
+      } else if (users.every(user =>  user.login !== login)){
           users.push(newUser);
           setRegistered(true);
         };

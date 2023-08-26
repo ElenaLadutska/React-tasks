@@ -376,10 +376,6 @@ header .sign-out {
   border: 1px solid #0ebeac;
 }
 
-.wrong-passwords {
-  font-size: small;
-}
-
 .authorization-box {
   display: flex;
   align-items: center;
@@ -391,6 +387,32 @@ header .sign-out {
   padding: 2.5em;
   border-radius: 10px;
   border: 2px solid #6428cc;
+}
+.authorization-box .authorization .creating-account input {
+  width: 90%;
+}
+.authorization-box .authorization .creating-account .password-content {
+  margin: 0 0 1.5vh 0;
+}
+.authorization-box .authorization .creating-account .password-content .hints {
+  align-self: self-start;
+  font-size: 1.6vh;
+  margin: 0.5vh 0 0 0;
+  opacity: 50%;
+  padding: 0 0 0 0.5vh;
+}
+.authorization-box .authorization .creating-account .sign-up-btn {
+  top: 1.5em;
+  font-weight: bold;
+  position: relative;
+}
+.authorization-box .authorization .creating-account .sign-up-btn:hover {
+  border-color: #0ebeac;
+  color: #0ebeac;
+}
+.authorization-box .authorization .creating-account .sign-up-btn[disabled]:hover {
+  border-color: #6428cc;
+  color: #6428cc;
 }
 .authorization-box button {
   color: #6428cc;
@@ -406,7 +428,7 @@ header .sign-out {
   width: 100vw;
   height: 100vh;
   z-index: 2;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .sign-in .sign-in-content {
   display: flex;
@@ -414,11 +436,12 @@ header .sign-out {
   justify-content: center;
   flex-direction: column;
   border-radius: 10px;
-  background-color: #fff;
+  border: 1px solid #6428cc;
+  background-color: #000;
   padding: 1em;
 }
 .sign-in .sign-in-content button {
-  color: #6428cc;
+  color: #fff;
 }
 .sign-in .sign-in-content button:hover {
   color: #0ebeac;
@@ -432,7 +455,7 @@ header .sign-out {
   width: 100%;
 }
 .sign-in .sign-in-content .sign-in-header span {
-  color: #6428cc;
+  color: #fff;
 }
 .sign-in .sign-in-content .users-data {
   display: flex;
@@ -441,17 +464,20 @@ header .sign-out {
   flex-direction: column;
 }
 .sign-in .sign-in-content .users-data ::-moz-placeholder {
-  color: #6428cc;
+  color: #fff;
 }
 .sign-in .sign-in-content .users-data ::placeholder,
 .sign-in .sign-in-content .users-data input {
-  color: #6428cc;
+  color: #fff;
+}
+.sign-in .sign-in-content .users-data input {
+  width: 90%;
 }
 .sign-in .sign-in-content .create-acc-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.8);
 }
 .sign-in .sign-in-content .create-acc-btn p {
   font-size: small;
@@ -499,17 +525,193 @@ header .sign-out {
   width: 27em;
 }
 
+.not-authoried {
+  text-align: center;
+}
+
 .user-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.user-data form {
+  margin: 0 auto;
+}
+.user-data .form {
+  background: #000;
+  margin: 0 auto;
+}
+.user-data input {
+  display: block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin: 0.5em 0;
+  font-size: 14px;
+}
+.user-data label {
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin: 0.3em 0;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+}
+.user-data button[type=submit],
+.user-data input[type=submit] {
+  display: block;
+  background: #6428cc;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  border: none;
+  margin: 1em 0 0 0;
+  padding: 1em;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 5px;
+  transition: all 0.5s;
+}
+.user-data button[type=submit]:hover,
+.user-data input[type=submit]:hover {
+  background: #0ebeac;
+}
+.user-data button[type=submit]:active,
+.user-data input[type=button]:active,
+.user-data input[type=submit]:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
+.user-data input:disabled {
+  opacity: 0.7;
+}
+.user-data select {
+  padding: 0.5em;
+}
+.user-data .completed-user-data h1 {
+  text-align: center;
+  font-size: 1.5em;
+}
+.user-data .completed-user-data .personal-data {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.user-data .completed-user-data .personal-data .data-block {
+  background-color: #6428cc;
+  border: 1px solid #6428cc;
+  border-radius: 10px;
+  margin: 1rem;
+  padding: 1rem;
+}
+.user-data .completed-user-data .personal-data .data-block h2 {
+  margin: 0 0 0.5em 0;
+  font-weight: 500;
+}
+.user-data .completed-user-data .personal-data .data-block span,
+.user-data .completed-user-data .personal-data .data-block p {
+  color: #000;
+}
+.user-data .completed-user-data .personal-data .data-block .change-data {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.user-data .completed-user-data .personal-data .data-block .change-data:hover {
+  opacity: 0.8;
+}
+.user-data .completed-user-data .personal-data .data-block .change-data span {
+  font-size: 0.8em;
+}
+
+.password-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #6428cc;
+  border-radius: 15px;
+  transition: all 1s;
+}
+.password-box input,
+.password-box input:hover,
+.password-box input:active,
+.password-box input:focus {
+  border: none;
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
+}
+.password-box svg {
+  cursor: pointer;
+  opacity: 40%;
+  margin: 0 0.5em 0 0;
+}
+.password-box svg:hover {
+  opacity: 60%;
+}
+
+.password-box:active,
+.password-box:hover {
+  border-color: #0ebeac;
+}
+
+.restore {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.restore .restore-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #6428cc;
+  background-color: #000;
+  padding: 1em;
+}
+.restore .restore-content label {
+  color: #6428cc;
+  margin: 2em 0 0 0;
+}
+.restore .restore-content input {
+  margin: 0.5em 0;
+}
+.restore .restore-content h1 {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: #6428cc;
+  letter-spacing: 0.2em;
+}
+.restore .restore-content .header-paragraph {
+  font-size: 0.8em;
+  margin: 0.5em 0;
+}
+.restore .restore-content .back-to-auth {
+  align-self: self-start;
+  margin: 3.5em 0 0 0;
 }
 
 body {
   font-family: "Bitter", Helvetica, serif;
   letter-spacing: 0.3px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   color: #fff;
 }
 body a:hover {
@@ -553,4 +755,23 @@ input:focus {
 
 #root {
   position: relative;
+}
+
+select {
+  background-color: transparent;
+  border: 2px solid #6428cc;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Bitter", Helvetica, serif;
+  padding: 0 1em;
+}
+select option {
+  background-color: #000;
+  color: #fff;
+}
+
+select:focus {
+  outline: none;
+  border: 1px solid #0ebeac;
 }/*# sourceMappingURL=index.css.map */

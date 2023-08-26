@@ -1,4 +1,120 @@
-.user-data {
-  @include flex-center-column();
+.not-authoried {
+  text-align: center
+}
 
+.user-data {
+  @include flex();
+  justify-content: space-around;
+  align-items: flex-start;
+
+  form {
+    margin: 0 auto;
+  }
+  
+  .form {
+    background: $background-color;
+    margin: 0 auto;
+  }
+  
+  input {
+    display: block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid white;
+    padding: 10px 15px;
+    margin: .5em 0;
+    font-size: 14px;
+  }
+  
+  label {
+    line-height: 2;
+    text-align: left;
+    display: block;
+    margin: .3em 0;
+    color: white;
+    font-size: 14px;
+    font-weight: 200;
+  }
+  
+  button[type="submit"],
+  input[type="submit"] {
+    display: block;
+    background: $primary-color;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+    margin: 1em 0 0 0;
+    padding: 1em;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 5px;
+    transition: all .5s;
+  }
+  
+  button[type="submit"]:hover,
+  input[type="submit"]:hover {
+    background: $hover-color;
+  }
+  
+  button[type="submit"]:active,
+  input[type="button"]:active,
+  input[type="submit"]:active {
+    transition: .3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: .8;
+  }
+  
+  input:disabled {
+    opacity: .7;
+  }
+  
+  select {
+    padding: .5em;
+  }
+
+  .completed-user-data {
+    h1 {
+    text-align: center;
+    font-size: 1.5em;
+  }
+    .personal-data {
+      @include flex();
+      flex-wrap: wrap;
+  
+      .data-block {
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        border-radius: 10px;
+        margin: $spacing;
+        padding: $spacing;
+  
+        h2 {
+          margin: 0 0 .5em 0;
+          font-weight: 500;
+        }
+  
+        span, 
+        p {
+          color: $background-color;
+        }
+
+        .change-data {
+          @include flex();
+          align-items: center;
+          cursor: pointer;
+          width: fit-content;
+
+          &:hover {
+            opacity: .8;
+          }
+
+          span {
+            font-size: .8em;
+          }
+        }
+      }
+    }
+  }
 }

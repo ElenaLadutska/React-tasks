@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Alert from '@mui/material/Alert';
 import Button from "../Button";
+import PasswordBox from "../PasswordBox/";
 
 const SignIn = ({setAuthorisation, setOpenModal}) => {
   const [username, setUsername] = useState('');
@@ -18,8 +19,8 @@ const SignIn = ({setAuthorisation, setOpenModal}) => {
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
     const authoriedUser = [];
-
-    const currentUser = users.find(user => user.mail.trim() === name.trim());
+    
+    const currentUser = users.find(user => user.login.trim() === name.trim());
 
     if (currentUser && currentUser.password === password && !authoriedUser.includes(currentUser)) {
       currentUser.isAuth = true;
@@ -46,7 +47,10 @@ const SignIn = ({setAuthorisation, setOpenModal}) => {
           <div className="cross">
             <Button 
               title="X" 
-              onClickFunc={() => setOpenModal(false)}
+              onClickFunc={() => {
+                setOpenModal(false);
+                toPage("")
+              }}
               />
           </div>
         </div>
@@ -68,17 +72,20 @@ const SignIn = ({setAuthorisation, setOpenModal}) => {
             onChange={(e) => setUsername(e.target.value)}
             />
 
-          <input type="password" 
+          <PasswordBox 
             id="password" 
             placeholder="Пароль"
             onChange={(e) => setUserPassword(e.target.value)}
-            />
+          />
         </form>
 
         <div className="reset">
           <Button 
             title="Забыли пароль?"
-            onClickFunc={() => alert(`Скоро добавим эту функцию`)}
+            onClickFunc={() => {
+              setOpenModal(false);
+              toPage("restore")
+            }}
           />
         </div>
 

@@ -12,11 +12,13 @@
 @import 'notification';
 @import 'not-found';
 @import 'profile';
+@import "password-box";
+@import "../components/RestorePassword/_restore.scss";
 
 body {
   font-family: $font; 
   letter-spacing: .3px;
-  background-color: rgba($color: $background-color, $alpha: .9);
+  background-color: rgba($color: $background-color, $alpha: .95);
   color: $text-color;
 
     a:hover {
@@ -57,3 +59,25 @@ input:focus {
 #root {
   position: relative
 }
+
+
+select {
+  background-color: transparent;
+  border: 2px solid $primary-color;
+  border-radius: 10px;
+  color: $text-color;
+  cursor: pointer;
+  font-family: $font; 
+  padding: 0 1em;
+
+  option {
+    background-color: $background-color;
+    color: $text-color;
+  }
+}
+
+select:focus {
+  outline: none;
+  border: 1px solid $hover-color;
+}
+

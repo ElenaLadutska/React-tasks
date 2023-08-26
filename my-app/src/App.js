@@ -9,6 +9,7 @@ import NotFound from './components/NotFound';
 import SignIn from './components/Sign in';
 import SignUp from './components/Sign up';
 import Profile from './components/Profile';
+import RestorePassword from "./components/RestorePassword/"
 
 const App = () => {
   const [city, setCity] = useState("1");
@@ -60,7 +61,13 @@ const App = () => {
 
         <Route path='profile' 
           element={
-            <Profile />} />
+            <Profile 
+              isAuthorized = {isAuthorized}
+            />} />
+
+        <Route path='restore'
+          element={<RestorePassword />}
+        />
 
         <Route path='*' 
           element={<NotFound />}/>
