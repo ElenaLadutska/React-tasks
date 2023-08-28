@@ -30,7 +30,6 @@ const Cinemas = ({ list, isAuthorized, setOpenNotification}) => {
                       : () => setOpenNotification(true)
                     }
                     >
-                      
                       <div className="place">{place.theater.name}</div>
 
                       <div className="time">

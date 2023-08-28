@@ -1,11 +1,8 @@
 import EditIcon from "@mui/icons-material/Edit";
-import changeInfo from "../../changeInfo";
 
 const ChangeInfo = () => {
   return (
-    <div className="change-data"
-      onClick = {() => changeInfo()}>
-
+    <div className="change-data">
       <EditIcon style={{color: "black"}} />
 
       <span>Изменить</span>

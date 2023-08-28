@@ -1,8 +1,6 @@
 import { CITIES } from "../../constants";
 
-const Cities = (props) => {
-  const { city, setCity } = props;
-
+const Cities = ({ city, setCity }) => {
   return (
     <>
       <select 
