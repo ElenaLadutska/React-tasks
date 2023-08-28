@@ -47,7 +47,7 @@ const Movie = ({ city, isNotificationOpen, isAuthorized, setOpenNotification }) 
       {!!movie?.length &&
           movie.map(
             ({
-              name, posterLink, bannerLink,genres, runTime, annotation, rentalDateStart, ageLimit, trailerLink, showList
+              name, posterLink,genres, runTime, annotation, rentalDateStart, ageLimit, trailerLink, showList
             }, index) => {
             return (
               <div className="movie"

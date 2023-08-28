@@ -16,7 +16,6 @@ const Movies = ({ city }) => {
 
   const [filteredMovies, setFilteredMovies] = useState([]);
 
-
   const [scrollTop, setScrollTop] = useState(0);
 
   let navigate = useNavigate();
@@ -111,7 +110,6 @@ const Movies = ({ city }) => {
               )
             }
           </ul>
-
 
           {
             scrollTop > 200 ? <ScrollButton /> : ""
